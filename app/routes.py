@@ -45,12 +45,15 @@ def send_contact_email(from_email: str, subject: str, content: str) -> bool:
     body = f"From: {from_email}\n\n{content}"
     msg.set_content(body)
 
-    with smtplib.SMTP(host, port) as server:
-        if use_tls:
-            server.starttls()
-        server.login(user, password)
-        server.send_message(msg)
-    return True
+    try:
+        with smtplib.SMTP(host, port, timeout=15) as server:
+            if use_tls:
+                server.starttls()
+            server.login(user, password)
+            server.send_message(msg)
+        return True
+    except Exception:
+        return False
 
 
 def get_lang():
