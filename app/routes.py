@@ -1,12 +1,11 @@
 """Route handlers for DLX Solution website."""
+import html
 import os
 import re
-import smtplib
 from email.message import EmailMessage
 
+import requests
 from flask import Blueprint, flash, redirect, render_template, request, url_for
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
 
 bp = Blueprint("main", __name__, template_folder="templates")
 
@@ -16,71 +15,54 @@ EMAIL_RE = re.compile(r"^[^@]+@[^@]+\.[^@]+$")
 
 
 def send_contact_email(from_email: str, subject: str, content: str) -> bool:
-    """Send contact form email.
+    """Send contact form email using Brevo API (HTTPS), not direct SMTP.
 
-    Prefers SendGrid API (if SENDGRID_API_KEY is set) and falls back to
-    direct SMTP when available.
+    Returns True if sent successfully, False otherwise.
 
     Configuration (set in .env or environment variables):
-    - SENDGRID_API_KEY (recommended on Render)
-    - MAIL_FROM (verified sender, defaults to CONTACT_TO)
-    - CONTACT_TO (defaults to support.dlx@dlxsolution.com)
-
-    For SMTP fallback:
-    - SMTP_HOST
-    - SMTP_PORT (default 587)
-    - SMTP_USER
-    - SMTP_PASSWORD
-    - SMTP_USE_TLS (\"1\" by default, set to \"0\" to disable)
+    - BREVO_API_KEY           (required)
+    - BREVO_FROM_EMAIL        (optional, defaults to CONTACT_TO)
+    - BREVO_FROM_NAME         (optional, defaults to "DLX Solution")
+    - CONTACT_TO              (defaults to support.dlx@dlxsolution.com)
     """
+    api_key = os.environ.get("BREVO_API_KEY")
     to_email = os.environ.get("CONTACT_TO", "support.dlx@dlxsolution.com")
-    mail_from = os.environ.get("MAIL_FROM", to_email)
-    body = f"From: {from_email}\n\n{content}"
+    from_email_cfg = os.environ.get("BREVO_FROM_EMAIL", to_email)
+    from_name = os.environ.get("BREVO_FROM_NAME", "DLX Solution")
 
-    # 1) Try SendGrid API first (works reliably on Render via HTTPS)
-    api_key = os.environ.get("SENDGRID_API_KEY")
-    if api_key and to_email:
-        try:
-            message = Mail(
-                from_email=mail_from,
-                to_emails=to_email,
-                subject=f"[DLX Website] {subject}",
-                plain_text_content=body,
-            )
-            # Ensure replies go to the visitor's email
-            message.reply_to = from_email
-
-            sg = SendGridAPIClient(api_key)
-            sg.send(message)
-            return True
-        except Exception:
-            # Fall through to SMTP if SendGrid fails
-            pass
-
-    # 2) Fallback: direct SMTP (only if allowed by the host)
-    host = os.environ.get("SMTP_HOST")
-    user = os.environ.get("SMTP_USER")
-    password = os.environ.get("SMTP_PASSWORD")
-    port = int(os.environ.get("SMTP_PORT", "587"))
-    use_tls = os.environ.get("SMTP_USE_TLS", "1") != "0"
-
-    if not host or not user or not password or not to_email:
+    if not api_key or not to_email:
         return False
 
-    msg = EmailMessage()
-    msg["Subject"] = f"[DLX Website] {subject}"
-    msg["From"] = to_email
-    msg["To"] = to_email
-    msg["Reply-To"] = from_email
-    msg.set_content(body)
+    escaped_content = html.escape(content).replace("\n", "<br>")
+    html_body = (
+        "<html><body>"
+        f"<p><strong>From:</strong> {html.escape(from_email)}</p>"
+        f"<p>{escaped_content}</p>"
+        "</body></html>"
+    )
+
+    payload = {
+        "sender": {"name": from_name, "email": from_email_cfg},
+        "to": [{"email": to_email}],
+        "replyTo": {"email": from_email},
+        "subject": f"[DLX Website] {subject}",
+        "htmlContent": html_body,
+    }
+
+    headers = {
+        "accept": "application/json",
+        "api-key": api_key,
+        "content-type": "application/json",
+    }
 
     try:
-        with smtplib.SMTP(host, port, timeout=15) as server:
-            if use_tls:
-                server.starttls()
-            server.login(user, password)
-            server.send_message(msg)
-        return True
+        resp = requests.post(
+            "https://api.brevo.com/v3/smtp/email",
+            json=payload,
+            headers=headers,
+            timeout=10,
+        )
+        return resp.status_code in (200, 201, 202)
     except Exception:
         return False
 
