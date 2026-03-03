@@ -5,6 +5,8 @@ import smtplib
 from email.message import EmailMessage
 
 from flask import Blueprint, flash, redirect, render_template, request, url_for
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 bp = Blueprint("main", __name__, template_folder="templates")
 
@@ -14,22 +16,51 @@ EMAIL_RE = re.compile(r"^[^@]+@[^@]+\.[^@]+$")
 
 
 def send_contact_email(from_email: str, subject: str, content: str) -> bool:
-    """Send contact form email using SMTP settings from environment.
+    """Send contact form email.
 
-    Returns True if sent successfully, False otherwise.
+    Prefers SendGrid API (if SENDGRID_API_KEY is set) and falls back to
+    direct SMTP when available.
 
-    SMTP configuration (set in .env or environment variables):
+    Configuration (set in .env or environment variables):
+    - SENDGRID_API_KEY (recommended on Render)
+    - MAIL_FROM (verified sender, defaults to CONTACT_TO)
+    - CONTACT_TO (defaults to support.dlx@dlxsolution.com)
+
+    For SMTP fallback:
     - SMTP_HOST
     - SMTP_PORT (default 587)
     - SMTP_USER
     - SMTP_PASSWORD
     - SMTP_USE_TLS (\"1\" by default, set to \"0\" to disable)
-    - CONTACT_TO (defaults to support.dlx@dlxsolution.com)
     """
+    to_email = os.environ.get("CONTACT_TO", "support.dlx@dlxsolution.com")
+    mail_from = os.environ.get("MAIL_FROM", to_email)
+    body = f"From: {from_email}\n\n{content}"
+
+    # 1) Try SendGrid API first (works reliably on Render via HTTPS)
+    api_key = os.environ.get("SENDGRID_API_KEY")
+    if api_key and to_email:
+        try:
+            message = Mail(
+                from_email=mail_from,
+                to_emails=to_email,
+                subject=f"[DLX Website] {subject}",
+                plain_text_content=body,
+            )
+            # Ensure replies go to the visitor's email
+            message.reply_to = from_email
+
+            sg = SendGridAPIClient(api_key)
+            sg.send(message)
+            return True
+        except Exception:
+            # Fall through to SMTP if SendGrid fails
+            pass
+
+    # 2) Fallback: direct SMTP (only if allowed by the host)
     host = os.environ.get("SMTP_HOST")
     user = os.environ.get("SMTP_USER")
     password = os.environ.get("SMTP_PASSWORD")
-    to_email = os.environ.get("CONTACT_TO", "support.dlx@dlxsolution.com")
     port = int(os.environ.get("SMTP_PORT", "587"))
     use_tls = os.environ.get("SMTP_USE_TLS", "1") != "0"
 
@@ -41,8 +72,6 @@ def send_contact_email(from_email: str, subject: str, content: str) -> bool:
     msg["From"] = to_email
     msg["To"] = to_email
     msg["Reply-To"] = from_email
-
-    body = f"From: {from_email}\n\n{content}"
     msg.set_content(body)
 
     try:
