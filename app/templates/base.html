@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="{{ request.args.get('lang') or request.cookies.get('lang', 'en') }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}DLX Solution | Design. Lead. Transform. | 德立新集团{% endblock %}</title>
+  <meta name="description" content="DLX Solution - Architecting Intelligent Enterprise Modernization. Design. Lead. Transform. 德立新集团">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="{{ url_for('main.home') }}" class="nav-logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="DLX Solution - Design. Lead. Transform." class="logo-img logo-no-bg">
+      </a>
+      <div class="nav-links">
+        <a href="{{ url_for('main.home') }}" class="{{ 'active' if active_page == 'home' else '' }}">{{ t('nav.home') }}</a>
+        <a href="{{ url_for('main.about') }}" class="{{ 'active' if active_page == 'about' else '' }}">{{ t('nav.about') }}</a>
+        <a href="{{ url_for('main.services') }}" class="{{ 'active' if active_page == 'services' else '' }}">{{ t('nav.services') }}</a>
+        <a href="{{ url_for('main.contact') }}" class="{{ 'active' if active_page == 'contact' else '' }}">{{ t('nav.contact') }}</a>
+        <a href="{{ url_for('main.login') }}" class="{{ 'active' if active_page == 'login' else '' }}">{{ t('nav.login') }}</a>
+        <div class="lang-picker">
+          {% set curr_lang = request.args.get('lang') or request.cookies.get('lang', 'en') %}
+          <select id="lang-select" class="lang-select" aria-label="Select language">
+            <option value="en" {{ 'selected' if curr_lang == 'en' else '' }}>English</option>
+            <option value="zh" {{ 'selected' if curr_lang == 'zh' else '' }}>繁體中文</option>
+            <option value="es" {{ 'selected' if curr_lang == 'es' else '' }}>Español</option>
+            <option value="fr" {{ 'selected' if curr_lang == 'fr' else '' }}>Français</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-messages" role="alert">
+          {% for msg in messages %}
+            <p class="flash flash-{{ msg }}">{{ t('contact.' ~ msg) }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <img src="{{ url_for('static', filename='images/logo-footer.png') }}" alt="DLX Solution" class="footer-logo">
+    <p class="footer-company">{{ t('footer.company') }}</p>
+    <p class="footer-tagline">{{ t('footer.tagline') }}</p>
+    <div class="footer-links">
+      <a href="{{ url_for('main.home') }}">{{ t('nav.home') }}</a>
+      <a href="{{ url_for('main.about') }}">{{ t('nav.about') }}</a>
+      <a href="{{ url_for('main.services') }}">{{ t('nav.services') }}</a>
+      <a href="{{ url_for('main.contact') }}">{{ t('nav.contact') }}</a>
+      <a href="{{ url_for('main.login') }}">{{ t('nav.login') }}</a>
+    </div>
+    <p class="footer-copyright">{{ t('footer.copyright')|replace('{year}', now().strftime('%Y')) }}</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

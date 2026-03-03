@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('home.tagline') }} | DLX Solution | 德立新集团{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="container">
+    <div class="hero-logo">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="DLX Solution - Design. Lead. Transform." class="logo-no-bg">
+    </div>
+    <h1>{{ t('home.subtagline') }}</h1>
+    <p class="hero-subtitle">{{ t('home.hero_subtitle') }}</p>
+    <div class="hero-ctas">
+      <a href="{{ url_for('main.contact') }}" class="cta-btn cta-primary">{{ t('home.cta_contact') }}</a>
+      <a href="{{ url_for('main.services') }}" class="cta-btn cta-secondary">{{ t('home.cta_learn_more') }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">{{ t('home.mission_title') }}</h2>
+    <p class="section-subtitle" style="margin-bottom: 0;">{{ t('home.mission_text') }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">{{ t('home.vision_title') }}</h2>
+    <p class="section-subtitle" style="margin-bottom: 0;">{{ t('home.vision_text') }}</p>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">{{ t('home.values_title') }}</h2>
+    <div class="card-grid" style="margin-top: 32px;">
+      <div class="card">
+        <h3>{{ t('home.value_worldclass') }}</h3>
+        <p>{{ t('home.value_worldclass_desc') }}</p>
+      </div>
+      <div class="card">
+        <h3>{{ t('home.value_impact') }}</h3>
+        <p>{{ t('home.value_impact_desc') }}</p>
+      </div>
+      <div class="card">
+        <h3>{{ t('home.value_nimble') }}</h3>
+        <p>{{ t('home.value_nimble_desc') }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">{{ t('home.strategic_title') }}</h2>
+    <p class="section-subtitle" style="margin-bottom: 0;">{{ t('home.strategic_text') }}</p>
+    <ul class="strategic-list">
+      <li>{{ t('home.strategic_1') }}</li>
+      <li>{{ t('home.strategic_2') }}</li>
+      <li>{{ t('home.strategic_3') }}</li>
+      <li>{{ t('home.strategic_4') }}</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">{{ t('home.value_prop_title') }}</h2>
+    <div class="value-grid" style="margin-top: 32px;">
+      <div class="value-item card">
+        <h4>{{ t('home.value_prop_1_title') }}</h4>
+        <p>{{ t('home.value_prop_1_desc') }}</p>
+      </div>
+      <div class="value-item card">
+        <h4>{{ t('home.value_prop_2_title') }}</h4>
+        <p>{{ t('home.value_prop_2_desc') }}</p>
+      </div>
+      <div class="value-item card">
+        <h4>{{ t('home.value_prop_3_title') }}</h4>
+        <p>{{ t('home.value_prop_3_desc') }}</p>
+      </div>
+      <div class="value-item card">
+        <h4>{{ t('home.value_prop_4_title') }}</h4>
+        <p>{{ t('home.value_prop_4_desc') }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">{{ t('home.why_dlx_title') }}</h2>
+    <p class="section-subtitle" style="margin-bottom: 0;">{{ t('home.why_dlx_text') }}</p>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">{{ t('home.phases_title') }}</h2>
+    <ul class="phases-list phases-numbered">
+      <li><span class="phase-num">01</span> {{ t('home.phase_1') }}</li>
+      <li><span class="phase-num">02</span> {{ t('home.phase_2') }}</li>
+      <li><span class="phase-num">03</span> {{ t('home.phase_3') }}</li>
+      <li><span class="phase-num">04</span> {{ t('home.phase_4') }}</li>
+    </ul>
+    <p class="section-subtitle" style="margin-top: 16px; margin-bottom: 0;">{{ t('home.timeline') }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta-block">
+      <h2>{{ t('contact.title') }}</h2>
+      <p>{{ t('contact.subtitle') }}</p>
+      <a href="{{ url_for('main.contact') }}" class="cta-btn">{{ t('nav.contact') }}</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

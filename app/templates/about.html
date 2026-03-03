@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('about.title') }} | DLX Solution | 德立新集团{% endblock %}
+
+{% block content %}
+<section class="about-hero">
+  <div class="container">
+    <h1>{{ t('about.title') }}</h1>
+    <p class="section-subtitle">{{ t('about.subtitle') }}</p>
+    <p class="about-intro">{{ t('about.intro') }}</p>
+
+    <div class="founder-card">
+      <div class="founder-photo-wrap">
+        <img src="{{ url_for('static', filename='images/founder-photo.png') }}" alt="Daisy Lee" class="founder-photo">
+      </div>
+      <h3>{{ t('about.founder_title') }}</h3>
+      <h2>
+        <a href="https://www.linkedin.com/in/daisy-x-li/" target="_blank" rel="noopener noreferrer">
+          {{ t('about.founder_name') }}
+        </a>
+      </h2>
+      <p class="role">{{ t('about.founder_role') }}</p>
+      <p>{{ t('about.founder_bio') }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">{{ t('home.values_title') }}</h2>
+    <div class="card-grid" style="margin-top: 32px;">
+      <div class="card">
+        <h3>{{ t('home.value_worldclass') }}</h3>
+        <p>{{ t('home.value_worldclass_desc') }}</p>
+      </div>
+      <div class="card">
+        <h3>{{ t('home.value_impact') }}</h3>
+        <p>{{ t('home.value_impact_desc') }}</p>
+      </div>
+      <div class="card">
+        <h3>{{ t('home.value_nimble') }}</h3>
+        <p>{{ t('home.value_nimble_desc') }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">{{ t('contact.title') }}</h2>
+    <p class="section-subtitle">{{ t('contact.subtitle') }}</p>
+    <a href="{{ url_for('main.contact') }}" class="cta-btn">{{ t('nav.contact') }}</a>
+  </div>
+</section>
+{% endblock %}

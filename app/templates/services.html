@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('services.title') }} | DLX Solution | 德立新集团{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="services-intro">
+      <h1 class="section-title">{{ t('services.title') }}</h1>
+      <p class="section-subtitle">{{ t('services.subtitle') }}</p>
+    </div>
+
+    <h2 class="section-title" style="margin-bottom: 24px;">{{ t('services.oimf_title') }}</h2>
+
+    <div class="service-card">
+      <div class="service-icon">01</div>
+      <div>
+        <h3>{{ t('services.phase_1_title') }}</h3>
+        <p>{{ t('services.phase_1_items') }}</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">02</div>
+      <div>
+        <h3>{{ t('services.phase_2_title') }}</h3>
+        <p>{{ t('services.phase_2_items') }}</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">03</div>
+      <div>
+        <h3>{{ t('services.phase_3_title') }}</h3>
+        <p>{{ t('services.phase_3_items') }}</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">04</div>
+      <div>
+        <h3>{{ t('services.phase_4_title') }}</h3>
+        <p>{{ t('services.phase_4_items') }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">{{ t('services.outcomes_title') }}</h2>
+    <ul class="strategic-list" style="max-width: 560px; margin-top: 24px;">
+      <li>{{ t('services.outcome_1') }}</li>
+      <li>{{ t('services.outcome_2') }}</li>
+      <li>{{ t('services.outcome_3') }}</li>
+      <li>{{ t('services.outcome_4') }}</li>
+      <li>{{ t('services.outcome_5') }}</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">{{ t('contact.title') }}</h2>
+    <a href="{{ url_for('main.contact') }}" class="cta-btn">{{ t('nav.contact') }}</a>
+  </div>
+</section>
+{% endblock %}

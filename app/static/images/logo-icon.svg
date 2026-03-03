@@ -1,0 +1,11 @@
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="navy-teal" x1="0" y1="0" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0a2540"/>
+      <stop offset="1" stop-color="#20e3d2"/>
+    </linearGradient>
+  </defs>
+  <rect width="96" height="96" rx="24" fill="url(#navy-teal)"/>
+  <text x="14" y="64" font-family="Inter, 'SF Pro', Arial, sans-serif" font-size="42" font-weight="bold" fill="#fff" letter-spacing="-2">DLX</text>
+  <rect x="12" y="12" width="72" height="72" rx="16" fill="none" stroke="#fff" stroke-width="2" opacity="0.15"/>
+</svg>

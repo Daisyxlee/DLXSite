@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('contact.title') }} | DLX Solution | 德立新集团{% endblock %}
+
+{% block content %}
+<section class="contact-hero">
+  <div class="container">
+    <h1 class="section-title">{{ t('contact.title') }}</h1>
+    <p class="section-subtitle">{{ t('contact.subtitle') }}</p>
+
+    <div class="contact-wrapper">
+      <div class="contact-form-card">
+        <form action="{{ url_for('main.contact') }}" method="post" class="contact-form">
+          <div class="form-group">
+            <label for="email">{{ t('contact.email_label') }} *</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com" class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="subject">{{ t('contact.subject_label') }} *</label>
+            <input type="text" id="subject" name="subject" required placeholder="" class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="content">{{ t('contact.content_label') }} *</label>
+            <textarea id="content" name="content" required rows="5" placeholder="" class="form-input form-textarea"></textarea>
+          </div>
+          <button type="submit" class="cta-btn form-submit">{{ t('contact.submit') }}</button>
+        </form>
+      </div>
+      <div class="contact-sidebar">
+        <p class="contact-message">{{ t('contact.message') }}</p>
+        <div class="contact-item">
+          <span class="label">{{ t('contact.email_label') }}</span>
+          <a href="mailto:support.dlx@dlxsolution.com">{{ t('contact.email_value') }}</a>
+        </div>
+        <div class="contact-item">
+          <span class="label">{{ t('contact.location_label') }}</span>
+          <span>{{ t('contact.location_value') }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
