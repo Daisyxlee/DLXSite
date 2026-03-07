@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ t('home.tagline') }} | DLX Solution | 德立新集团{% endblock %}
+{% block title %}{{ t('home.tagline') or "Design. Lead. Transform." }} | DLX Solution | 德立新集团{% endblock %}
 
 {% block content %}
 <section class="hero">
@@ -8,112 +8,133 @@
     <div class="hero-logo">
       <img src="{{ url_for('static', filename='images/logo.png') }}" alt="DLX Solution - Design. Lead. Transform." class="logo-no-bg">
     </div>
-    <h1>{{ t('home.subtagline') }}</h1>
-    <p class="hero-subtitle">{{ t('home.hero_subtitle') }}</p>
+    <h1><span class="hero-line-1">{{ t('home.hero_headline_1') or "Modernize Operations" }}</span><span class="hero-line-2">{{ t('home.hero_headline_2') or "Deliver Real Business Impact" }}</span></h1>
+    <p class="hero-subtitle">{{ t('home.hero_subtitle') or "DLX Solution helps organizations redesign workflows, reduce operational friction, and adopt practical AI to improve efficiency, clarity, and scalability." }}</p>
     <div class="hero-ctas">
-      <a href="{{ url_for('main.contact') }}" class="cta-btn cta-primary">{{ t('home.cta_contact') }}</a>
-      <a href="{{ url_for('main.services') }}" class="cta-btn cta-secondary">{{ t('home.cta_learn_more') }}</a>
+      <a href="{{ url_for('main.contact') }}#contact" class="cta-btn cta-primary">{{ t('home.cta_primary') or "Book a Consultation" }}</a>
+      <a href="{{ url_for('main.services') }}" class="cta-btn cta-secondary">{{ t('home.cta_secondary') or "Explore Services" }}</a>
     </div>
   </div>
 </section>
 
 <section class="section section-alt">
   <div class="container">
-    <h2 class="section-title">{{ t('home.mission_title') }}</h2>
-    <p class="section-subtitle" style="margin-bottom: 0;">{{ t('home.mission_text') }}</p>
+    <h2 class="section-title">{{ t('home.outcomes_title') or "Operational outcomes that matter" }}</h2>
+    <ul class="strategic-list" style="margin-top: 16px;">
+      <li>{{ t('home.outcome_1') or "Reduce manual workflow friction" }}</li>
+      <li>{{ t('home.outcome_2') or "Improve operational efficiency and visibility" }}</li>
+      <li>{{ t('home.outcome_3') or "Modernize systems with practical automation and AI" }}</li>
+      <li>{{ t('home.outcome_4') or "Align operations with measurable business performance" }}</li>
+    </ul>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <h2 class="section-title">{{ t('home.vision_title') }}</h2>
-    <p class="section-subtitle" style="margin-bottom: 0;">{{ t('home.vision_text') }}</p>
-  </div>
-</section>
-
-<section class="section section-alt">
-  <div class="container">
-    <h2 class="section-title">{{ t('home.values_title') }}</h2>
+    <h2 class="section-title">{{ t('home.how_we_help_title') or "How We Help" }}</h2>
     <div class="card-grid" style="margin-top: 32px;">
       <div class="card">
-        <h3>{{ t('home.value_worldclass') }}</h3>
-        <p>{{ t('home.value_worldclass_desc') }}</p>
+        <h3>{{ t('home.service_1_title') or "Operational Diagnostic" }}</h3>
+        <p>{{ t('home.service_1_desc') or "Identify workflow bottlenecks, operational gaps, and improvement opportunities." }}</p>
       </div>
       <div class="card">
-        <h3>{{ t('home.value_impact') }}</h3>
-        <p>{{ t('home.value_impact_desc') }}</p>
+        <h3>{{ t('home.service_2_title') or "Modernization Blueprint" }}</h3>
+        <p>{{ t('home.service_2_desc') or "Design a practical roadmap for workflow redesign, automation, and AI integration." }}</p>
       </div>
       <div class="card">
-        <h3>{{ t('home.value_nimble') }}</h3>
-        <p>{{ t('home.value_nimble_desc') }}</p>
+        <h3>{{ t('home.service_3_title') or "Pilot Implementation" }}</h3>
+        <p>{{ t('home.service_3_desc') or "Launch targeted transformation initiatives with measurable operational outcomes." }}</p>
+      </div>
+      <div class="card">
+        <h3>{{ t('home.service_4_title') or "Founder's Launch Kit" }}</h3>
+        <p>{{ t('home.service_4_desc') or "A streamlined package to establish your business presence with a website, business email, and LinkedIn company page." }}</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section section-alt">
   <div class="container">
-    <h2 class="section-title">{{ t('home.strategic_title') }}</h2>
-    <p class="section-subtitle" style="margin-bottom: 0;">{{ t('home.strategic_text') }}</p>
+    <h2 class="section-title">{{ t('home.modernize_title') or "How We Modernize Operations" }}</h2>
+    <p class="section-subtitle" style="margin-bottom: 16px;">{{ t('home.modernize_intro') or "We help organizations modernize operations through a structured approach that focuses on practical execution and measurable outcomes." }}</p>
+    <p class="section-subtitle" style="margin-bottom: 8px; font-weight: 600;">{{ t('home.modernize_our_work') or "Our work typically includes:" }}</p>
     <ul class="strategic-list">
-      <li>{{ t('home.strategic_1') }}</li>
-      <li>{{ t('home.strategic_2') }}</li>
-      <li>{{ t('home.strategic_3') }}</li>
-      <li>{{ t('home.strategic_4') }}</li>
+      <li>{{ t('home.modernize_list_1') or "diagnosing operational friction across workflows" }}</li>
+      <li>{{ t('home.modernize_list_2') or "redesigning processes for efficiency and clarity" }}</li>
+      <li>{{ t('home.modernize_list_3') or "applying automation and AI where they create real value" }}</li>
+      <li>{{ t('home.modernize_list_4') or "supporting adoption so improvements are sustained" }}</li>
     </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">{{ t('home.engagement_title') or "Our Engagement Model" }}</h2>
+    <ul class="phases-list phases-numbered" style="margin-top: 16px;">
+      <li><span class="phase-num">01</span> {{ t('home.phase_1') or "Phase 1 — Diagnostic: Assess workflows, bottlenecks, and operational priorities." }}</li>
+      <li><span class="phase-num">02</span> {{ t('home.phase_2') or "Phase 2 — Modernization Blueprint: Define improvement opportunities and implementation strategy." }}</li>
+      <li><span class="phase-num">03</span> {{ t('home.phase_3') or "Phase 3 — Pilot Implementation: Launch a focused initiative to validate modernization outcomes." }}</li>
+      <li><span class="phase-num">04</span> {{ t('home.phase_4') or "Phase 4 — Advisory: Optional ongoing support to scale and refine improvements." }}</li>
+    </ul>
+    <p class="section-subtitle" style="margin-top: 16px; margin-bottom: 0;">{{ t('home.timeline') or "Typical engagement timeline: 8–13 weeks depending on scope." }}</p>
   </div>
 </section>
 
 <section class="section section-alt">
   <div class="container">
-    <h2 class="section-title">{{ t('home.value_prop_title') }}</h2>
-    <div class="value-grid" style="margin-top: 32px;">
-      <div class="value-item card">
-        <h4>{{ t('home.value_prop_1_title') }}</h4>
-        <p>{{ t('home.value_prop_1_desc') }}</p>
+    <h2 class="section-title">{{ t('home.why_dlx_title') or "Why DLX Solution" }}</h2>
+    <p class="section-subtitle" style="margin-bottom: 12px;">{{ t('home.why_dlx_text') or "We combine operational insight, modern technology thinking, and disciplined execution to help organizations transform how work actually gets done." }}</p>
+    <p class="section-subtitle" style="margin-bottom: 0;">{{ t('home.why_dlx_text2') or "Our approach focuses on practical modernization—improving workflows, strengthening accountability, and building systems that scale with the organization." }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">{{ t('home.guides_title') or "What Guides Our Work" }}</h2>
+    <div class="card-grid" style="margin-top: 32px;">
+      <div class="card">
+        <h3>{{ t('home.mission_title') or "Mission" }}</h3>
+        <p>{{ t('home.mission_text') or "To help organizations modernize operations by reducing workflow friction, improving efficiency, and applying technology and AI where they create real business value." }}</p>
       </div>
-      <div class="value-item card">
-        <h4>{{ t('home.value_prop_2_title') }}</h4>
-        <p>{{ t('home.value_prop_2_desc') }}</p>
+      <div class="card">
+        <h3>{{ t('home.vision_title') or "Vision" }}</h3>
+        <p>{{ t('home.vision_text') or "To be a trusted partner for organizations seeking practical, disciplined modernization in an increasingly AI-enabled world." }}</p>
       </div>
-      <div class="value-item card">
-        <h4>{{ t('home.value_prop_3_title') }}</h4>
-        <p>{{ t('home.value_prop_3_desc') }}</p>
-      </div>
-      <div class="value-item card">
-        <h4>{{ t('home.value_prop_4_title') }}</h4>
-        <p>{{ t('home.value_prop_4_desc') }}</p>
+      <div class="card value-item" style="border-left: 4px solid var(--blue); padding-left: 20px;">
+        <h3>{{ t('home.values_title') or "Values — W.I.N." }}</h3>
+        <p><strong>{{ t('home.value_worldclass') or "World-Class" }}</strong> {{ t('home.value_worldclass_desc') or "We pursue excellence in both thinking and execution." }}</p>
+        <p><strong>{{ t('home.value_impact') or "Impact" }}</strong> {{ t('home.value_impact_desc') or "We focus on initiatives that deliver measurable operational improvement." }}</p>
+        <p><strong>{{ t('home.value_nimble') or "Nimble" }}</strong> {{ t('home.value_nimble_desc') or "We adapt quickly and work pragmatically to move modernization forward." }}</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section section-launch-kit" id="founder-launch-kit">
   <div class="container">
-    <h2 class="section-title">{{ t('home.why_dlx_title') }}</h2>
-    <p class="section-subtitle" style="margin-bottom: 0;">{{ t('home.why_dlx_text') }}</p>
+    <div class="launch-kit-card">
+      <h2 class="launch-kit-title">{{ t('home.launch_kit_title') or "Founder's Launch Kit — For You!" }}</h2>
+      <p class="launch-kit-hook">{{ t('home.launch_kit_hook') or "More professionals are starting something of their own. The problem isn't the idea — it's the first few steps." }}</p>
+      <p class="launch-kit-pitch">{{ t('home.launch_kit_pitch') or "A practical setup that helps founders move from idea to professional presence in just a few days." }}</p>
+      <h3 class="launch-kit-what">{{ t('home.launch_kit_what') or "What you'll get" }}</h3>
+      <ul class="launch-kit-list">
+        <li>{{ t('home.launch_kit_1') or "Professional website setup" }}</li>
+        <li>{{ t('home.launch_kit_2') or "Custom business email" }}</li>
+        <li>{{ t('home.launch_kit_3') or "LinkedIn company page" }}</li>
+        <li>{{ t('home.launch_kit_4') or "1:1 operations consultation" }}</li>
+      </ul>
+      <p class="launch-kit-goal">{{ t('home.launch_kit_goal') or "Help new founders launch with a clean, professional foundation." }}</p>
+      <a href="{{ url_for('main.contact') }}#contact" class="cta-btn launch-kit-cta">{{ t('home.launch_kit_cta') or "Learn More" }}</a>
+    </div>
   </div>
 </section>
 
-<section class="section section-alt">
-  <div class="container">
-    <h2 class="section-title">{{ t('home.phases_title') }}</h2>
-    <ul class="phases-list phases-numbered">
-      <li><span class="phase-num">01</span> {{ t('home.phase_1') }}</li>
-      <li><span class="phase-num">02</span> {{ t('home.phase_2') }}</li>
-      <li><span class="phase-num">03</span> {{ t('home.phase_3') }}</li>
-      <li><span class="phase-num">04</span> {{ t('home.phase_4') }}</li>
-    </ul>
-    <p class="section-subtitle" style="margin-top: 16px; margin-bottom: 0;">{{ t('home.timeline') }}</p>
-  </div>
-</section>
-
-<section class="section">
+<section class="section section-cta">
   <div class="container">
     <div class="cta-block">
-      <h2>{{ t('contact.title') }}</h2>
-      <p>{{ t('contact.subtitle') }}</p>
-      <a href="{{ url_for('main.contact') }}" class="cta-btn">{{ t('nav.contact') }}</a>
+      <h2>{{ t('home.cta_title') or "Start the conversation" }}</h2>
+      <p>{{ t('home.cta_subtitle') or "If your organization is exploring operational modernization, workflow redesign, or AI-enabled transformation, we would be glad to discuss how DLX Solution can help." }}</p>
+      <a href="{{ url_for('main.contact') }}#contact" class="cta-btn">{{ t('home.cta_btn') or "Book a Consultation" }}</a>
     </div>
   </div>
 </section>

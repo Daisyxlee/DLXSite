@@ -1,18 +1,17 @@
 """DLX Solution website application."""
 import json
-import os
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
 
 from flask import Flask
 
-# Theme colors: navy (#0a2540) and teal (#20e3d2)
+from app.config import SOCIAL_LINKS, get_config
+
 TRANSLATIONS = {}
 
 
 def load_translations():
-    """Load all translation JSON files."""
+    """Load all translation JSON files into TRANSLATIONS."""
     global TRANSLATIONS
     trans_dir = Path(__file__).parent / "translations"
     for path in trans_dir.glob("*.json"):
@@ -24,34 +23,33 @@ def load_translations():
 def create_app():
     """Create and configure the Flask application."""
     app = Flask(__name__)
-    app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-secret-key")
+    app.config.update(get_config())
     load_translations()
 
     @app.context_processor
-    def inject_t():
+    def inject_globals():
         def t(key, default=""):
-            parts = key.split(".")
-            from flask import current_app
+            try:
+                parts = key.split(".")
+                from flask import current_app
 
-            lang = getattr(current_app, "_current_lang", "en")
-            data = TRANSLATIONS.get(lang, TRANSLATIONS["en"])
-            for part in parts:
-                if isinstance(data, dict) and part in data:
-                    data = data[part]
-                else:
-                    return default
-            return data if isinstance(data, str) else default
+                lang = getattr(current_app, "_current_lang", "en")
+                data = TRANSLATIONS.get(lang) or TRANSLATIONS.get("en") or {}
+                for part in parts:
+                    if isinstance(data, dict) and part in data:
+                        data = data[part]
+                    else:
+                        return default or ""
+                result = data if isinstance(data, str) else default
+                return result if result is not None else ""
+            except Exception:
+                return default or ""
 
-        return dict(t=t, now=lambda: datetime.now(timezone.utc))
-
-    @app.template_filter("replace_lang")
-    def replace_lang_filter(url, lang):
-        """Replace or add lang query param in URL."""
-        parsed = urlparse(url)
-        params = parse_qs(parsed.query)
-        params["lang"] = [lang]
-        new_query = urlencode(params, doseq=True)
-        return urlunparse(parsed._replace(query=new_query))
+        return {
+            "t": t,
+            "now": lambda: datetime.now(timezone.utc),
+            "social_links": SOCIAL_LINKS,
+        }
 
     from app.routes import bp
 

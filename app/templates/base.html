@@ -12,6 +12,33 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
+  <div class="promo-banner" id="promoBanner" role="region" aria-label="Promotion">
+    <div class="promo-inner">
+      <div class="promo-glow" aria-hidden="true"></div>
+
+      <div class="promo-message-wrap">
+        <span class="promo-badge">NEW</span>
+
+        <span class="promo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"></path>
+          </svg>
+        </span>
+
+        <a href="{{ url_for('main.home') }}#founder-launch-kit" class="promo-message-link" id="promoMessageLink">
+          <span class="promo-message" id="promoMessage"></span>
+        </a>
+      </div>
+
+      <div class="promo-actions">
+        <a href="{{ url_for('main.contact') }}#contact" class="promo-link">Learn More</a>
+        <button class="promo-close" id="promoClose" type="button" aria-label="Close promotion banner">
+          &times;
+        </button>
+      </div>
+    </div>
+  </div>
+
   <nav class="nav">
     <div class="nav-inner">
       <a href="{{ url_for('main.home') }}" class="nav-logo">
@@ -53,6 +80,25 @@
     <img src="{{ url_for('static', filename='images/logo-footer.png') }}" alt="DLX Solution" class="footer-logo">
     <p class="footer-company">{{ t('footer.company') }}</p>
     <p class="footer-tagline">{{ t('footer.tagline') }}</p>
+    <div class="social-icons">
+      {% for link in social_links %}
+      <a href="{{ link.url }}" target="_blank" rel="noopener" aria-label="{{ link.label }}">
+        {% if link.icon == 'x' %}
+        <svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.038 9.189L24 22.847h-7.406l-5.8-7.584-6.633 7.584H.48l8.6-9.83L0 1.153h7.594l5.243 6.932 6.064-6.932zm-1.291 19.47h2.041L6.48 3.266H4.293l13.317 17.357z"/></svg>
+        {% elif link.icon == 'youtube' %}
+        <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.5V8.5L15.8 12l-6.2 3.5z"/></svg>
+        {% elif link.icon == 'facebook' %}
+        <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H7.5v-3h3V9.3c0-3 1.8-4.7 4.5-4.7 1.3 0 2.6.2 2.6.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3H14v7A10 10 0 0 0 22 12z"/></svg>
+        {% elif link.icon == 'instagram' %}
+        <svg viewBox="0 0 24 24"><path d="M7.5 2C4.5 2 2 4.5 2 7.5v9C2 19.5 4.5 22 7.5 22h9c3 0 5.5-2.5 5.5-5.5v-9C22 4.5 19.5 2 16.5 2h-9zm4.5 5.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm5.2-.7a1 1 0 1 1-1-1 1 1 0 0 1 1 1zM12 9a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/></svg>
+        {% elif link.icon == 'linkedin' %}
+        <svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.6v-5.4c0-1.3 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8v5.5H9.3V9h3.4v1.6h.1a3.7 3.7 0 0 1 3.3-1.8c3.5 0 4.2 2.3 4.2 5.3v6.3zM5.3 7.4a2.1 2.1 0 1 1 2.1-2.1 2.1 2.1 0 0 1-2.1 2.1zM7.1 20.4H3.6V9h3.5z"/></svg>
+        {% elif link.icon == 'facebook-group' %}
+        <svg viewBox="0 0 24 24"><path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm-8 0a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 2c-3.3 0-8 1.7-8 5v2h10v-2c0-1.2.5-2.4 1.3-3.4A9.6 9.6 0 0 0 8 13zm8 0a6 6 0 0 0-4.5 2.1A4.9 4.9 0 0 1 14 18v2h10v-2c0-3.3-4.7-5-8-5z"/></svg>
+        {% endif %}
+      </a>
+      {% endfor %}
+    </div>
     <div class="footer-links">
       <a href="{{ url_for('main.home') }}">{{ t('nav.home') }}</a>
       <a href="{{ url_for('main.about') }}">{{ t('nav.about') }}</a>
