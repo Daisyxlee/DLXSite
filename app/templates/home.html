@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}{{ t('home.tagline') or "Design. Lead. Transform." }} | DLX Solution | 德立新集团{% endblock %}
+{% block title %}{{ t('home.tagline') or "Design. Lead. Transform." }} | DLX Solution LLC | 德立新集团{% endblock %}
 
 {% block content %}
 <section class="hero">
   <div class="container">
     <div class="hero-logo">
-      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="DLX Solution - Design. Lead. Transform." class="logo-no-bg">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="DLX Solution LLC - Design. Lead. Transform." class="logo-no-bg">
     </div>
     <h1><span class="hero-line-1">{{ t('home.hero_headline_1') or "Modernize Operations" }}</span><span class="hero-line-2">{{ t('home.hero_headline_2') or "Deliver Real Business Impact" }}</span></h1>
-    <p class="hero-subtitle">{{ t('home.hero_subtitle') or "DLX Solution helps organizations redesign workflows, reduce operational friction, and adopt practical AI to improve efficiency, clarity, and scalability." }}</p>
+    <p class="hero-subtitle">{{ t('home.hero_subtitle') or "DLX Solution LLC helps organizations redesign workflows, reduce operational friction, and adopt practical AI to improve efficiency, clarity, and scalability." }}</p>
     <div class="hero-ctas">
       <a href="{{ url_for('main.contact') }}#contact" class="cta-btn cta-primary">{{ t('home.cta_primary') or "Book a Consultation" }}</a>
       <a href="{{ url_for('main.services') }}" class="cta-btn cta-secondary">{{ t('home.cta_secondary') or "Explore Services" }}</a>
@@ -82,7 +82,7 @@
 
 <section class="section section-alt">
   <div class="container">
-    <h2 class="section-title">{{ t('home.why_dlx_title') or "Why DLX Solution" }}</h2>
+    <h2 class="section-title">{{ t('home.why_dlx_title') or "Why DLX Solution LLC" }}</h2>
     <p class="section-subtitle" style="margin-bottom: 12px;">{{ t('home.why_dlx_text') or "We combine operational insight, modern technology thinking, and disciplined execution to help organizations transform how work actually gets done." }}</p>
     <p class="section-subtitle" style="margin-bottom: 0;">{{ t('home.why_dlx_text2') or "Our approach focuses on practical modernization—improving workflows, strengthening accountability, and building systems that scale with the organization." }}</p>
   </div>
@@ -133,7 +133,7 @@
   <div class="container">
     <div class="cta-block">
       <h2>{{ t('home.cta_title') or "Start the conversation" }}</h2>
-      <p>{{ t('home.cta_subtitle') or "If your organization is exploring operational modernization, workflow redesign, or AI-enabled transformation, we would be glad to discuss how DLX Solution can help." }}</p>
+      <p>{{ t('home.cta_subtitle') or "If your organization is exploring operational modernization, workflow redesign, or AI-enabled transformation, we would be glad to discuss how DLX Solution LLC can help." }}</p>
       <a href="{{ url_for('main.contact') }}#contact" class="cta-btn">{{ t('home.cta_btn') or "Book a Consultation" }}</a>
     </div>
   </div>

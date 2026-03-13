@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}DLX Solution | Design. Lead. Transform. | 德立新集团{% endblock %}</title>
-  <meta name="description" content="DLX Solution - Architecting Intelligent Enterprise Modernization. Design. Lead. Transform. 德立新集团">
+  <title>{% block title %}DLX Solution LLC | Design. Lead. Transform. | 德立新集团{% endblock %}</title>
+  <meta name="description" content="DLX Solution LLC - Architecting Intelligent Enterprise Modernization. Design. Lead. Transform. 德立新集团">
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,7 +42,7 @@
   <nav class="nav">
     <div class="nav-inner">
       <a href="{{ url_for('main.home') }}" class="nav-logo">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="DLX Solution - Design. Lead. Transform." class="logo-img logo-no-bg">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="DLX Solution LLC - Design. Lead. Transform." class="logo-img logo-no-bg">
       </a>
       <div class="nav-links">
         <a href="{{ url_for('main.home') }}" class="{{ 'active' if active_page == 'home' else '' }}">{{ t('nav.home') }}</a>
@@ -77,7 +77,7 @@
   </main>
 
   <footer class="footer">
-    <img src="{{ url_for('static', filename='images/logo-footer.png') }}" alt="DLX Solution" class="footer-logo">
+    <img src="{{ url_for('static', filename='images/logo-footer.png') }}" alt="DLX Solution LLC" class="footer-logo">
     <p class="footer-company">{{ t('footer.company') }}</p>
     <p class="footer-tagline">{{ t('footer.tagline') }}</p>
     <div class="social-icons">

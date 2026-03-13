@@ -15,7 +15,7 @@
     "tagline": "Design. Lead. Transform.",
     "hero_headline_1": "Modernize Operations",
     "hero_headline_2": "Deliver Real Business Impact",
-    "hero_subtitle": "DLX Solution helps organizations redesign workflows, reduce operational friction, and adopt practical AI to improve efficiency, clarity, and scalability.",
+    "hero_subtitle": "DLX Solution LLC helps organizations redesign workflows, reduce operational friction, and adopt practical AI to improve efficiency, clarity, and scalability.",
     "cta_primary": "Book a Consultation",
     "cta_secondary": "Explore Services",
     "outcomes_title": "Operational outcomes that matter",
@@ -45,7 +45,7 @@
     "phase_3": "Phase 3 — Pilot Implementation: Launch a focused initiative to validate modernization outcomes.",
     "phase_4": "Phase 4 — Advisory: Optional ongoing support to scale and refine improvements.",
     "timeline": "Typical engagement timeline: 8–13 weeks depending on scope.",
-    "why_dlx_title": "Why DLX Solution",
+    "why_dlx_title": "Why DLX Solution LLC",
     "why_dlx_text": "We combine operational insight, modern technology thinking, and disciplined execution to help organizations transform how work actually gets done.",
     "why_dlx_text2": "Our approach focuses on practical modernization—improving workflows, strengthening accountability, and building systems that scale with the organization.",
     "guides_title": "What Guides Our Work",
@@ -61,7 +61,7 @@
     "value_nimble": "Nimble",
     "value_nimble_desc": "We adapt quickly and work pragmatically to move modernization forward.",
     "cta_title": "Start the conversation",
-    "cta_subtitle": "If your organization is exploring operational modernization, workflow redesign, or AI-enabled transformation, we would be glad to discuss how DLX Solution can help.",
+    "cta_subtitle": "If your organization is exploring operational modernization, workflow redesign, or AI-enabled transformation, we would be glad to discuss how DLX Solution LLC can help.",
     "cta_btn": "Book a Consultation",
     "launch_kit_title": "Founder's Launch Kit — For You!",
     "launch_kit_hook": "More professionals are starting something of their own. The problem isn't the idea — it's the first few steps.",
@@ -75,13 +75,13 @@
     "launch_kit_cta": "Learn More"
   },
   "about": {
-    "title": "About DLX Solution",
+    "title": "About DLX Solution LLC",
     "subtitle": "Design. Lead. Transform. | 德立新集团",
     "intro": "DLX partners with operationally intensive companies to modernize workflows, reduce manual friction, and unlock efficiency through practical, AI-enabled process transformation.",
     "founder_title": "Founder & CEO",
     "founder_name": "Daisy Lee",
-    "founder_role": "Founder & CEO, DLX Solution | 德立新集团",
-    "founder_bio": "Daisy Lee founded DLX Solution with a vision to connect innovative AI-driven operational solutions with businesses seeking measurable growth. Under her leadership, DLX has become a trusted partner for organizations navigating intelligent enterprise modernization."
+    "founder_role": "Founder & CEO, DLX Solution LLC | 德立新集团",
+    "founder_bio": "Daisy Lee founded DLX Solution LLC with a vision to connect innovative AI-driven operational solutions with businesses seeking measurable growth. Under her leadership, DLX has become a trusted partner for organizations navigating intelligent enterprise modernization."
   },
   "services": {
     "title": "Our Services",
@@ -114,13 +114,13 @@
     "send_error": "Unable to send your message. Please try again or email us directly.",
     "email_value": "support.dlx@dlxsolution.com",
     "location_label": "Location",
-    "location_value": "Newport Beach, CA, USA 92660",
+    "location_value": "Los Angeles, CA, USA",
     "message": "Reach out for consultations, partnerships, or general inquiries. Our team will respond promptly."
   },
   "footer": {
-    "company": "DLX Solution | 德立新集团",
+    "company": "DLX Solution LLC | 德立新集团",
     "tagline": "Design. Lead. Transform.",
-    "copyright": "© {year} DLX Solution. All rights reserved."
+    "copyright": "© {year} DLX Solution LLC. All rights reserved."
   },
   "lang": {
     "en": "English",
