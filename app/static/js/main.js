@@ -1,12 +1,12 @@
 /**
- * DLX Solution - main.js
+ * DLX Solution LLC - main.js
  * Promo banner, language picker, smooth scroll for anchors
  */
 (function () {
   const messages = [
     "Founder's Launch Kit is now available at an introductory rate for early clients.",
     "Launch your website, branded business email, and LinkedIn company page in one streamlined package.",
-    "Build a credible digital presence faster with DLX Solution's startup-ready launch support."
+    "Build a credible digital presence faster with DLX Solution LLC's startup-ready launch support."
   ];
 
   const banner = document.getElementById("promoBanner");

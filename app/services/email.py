@@ -18,7 +18,7 @@ def send_contact_email(from_email: str, subject: str, content: str) -> bool:
     api_key = os.environ.get("BREVO_API_KEY")
     to_email = os.environ.get("CONTACT_TO", "support.dlx@dlxsolution.com")
     from_email_cfg = os.environ.get("BREVO_FROM_EMAIL", to_email)
-    from_name = os.environ.get("BREVO_FROM_NAME", "DLX Solution")
+    from_name = os.environ.get("BREVO_FROM_NAME", "DLX Solution LLC")
 
     if not api_key or not to_email:
         return False
